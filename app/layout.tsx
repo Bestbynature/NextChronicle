@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <Provider>
       <body suppressHydrationWarning={true}
-      className={`${inter.className} bg-slate-300 text-slate-1200 container mx-auto p-4 h-full`}>
+      className={`${inter.className}`}>
         <Providers>
           {children}
         </Providers>

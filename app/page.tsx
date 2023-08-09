@@ -6,13 +6,31 @@ import { useRouter } from 'next/navigation'
 const LandingPage = () => {
   const router = useRouter();
   return (
-    <div>
-      <h1>This is the landing page for Next Chronicles</h1>
-      <button
-      className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-      type='button'
-      onClick={() => router.push('/login') }
-      >Login / Register</button>
+    <div className='landing-wrapper'>
+      <div className="dark">
+        <p>The Home of Intelligent Blogs!</p>
+        <div className="action">
+            <button 
+            className="sign-in-button"
+            type='button'
+            onClick={() => router.push('/login')}>
+              Sign In / Register
+            </button>
+        </div>
+      </div>
+      <div className="landing-page">
+        <h1 className="landing-page-title">Welcome to the the Next Chronicle's Blog Application</h1>
+        <p className="landing-page-description">Explore, create, and connect with others through blog posts.</p>
+        <div className="action">
+          <button 
+          className="sign-in-button"
+          type='button'
+          onClick={() => router.push('/login')}>
+            Sign In / Register
+          </button>
+        </div>
+      </div>
+      <div className="dark">Sign in to enjoy all the benefits</div>
     </div>
   )
 }
