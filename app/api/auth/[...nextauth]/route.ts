@@ -1,41 +1,39 @@
-import NextAuth, { type NextAuthOptions } from "next-auth";
-// import { Provider } from "next-auth/providers/credentials";
-// import bcrypt from "bcrypt";
-// import { NextAuthOptions } from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { prisma } from "@/data/db";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
-
-const Prisma = new PrismaClient();
 
 export const authOptions:NextAuthOptions = {
-    session: {
-        strategy: "jwt",
+    adapter: PrismaAdapter(prisma),
+    pages: {
+        signIn: "/api/auth/login",
     },
-    // adapter: PrismaAdapter(Prisma),
     providers: [
         CredentialsProvider({
-            name: 'sign in',
+            name: 'your-credentials',
             credentials: {
                 username: { label: "Username", type: "text", placeholder: "jsmith" },
                 password: { label: "Password", type: "password" }
             },
-            async authorize(credentials) {
-                const user = await yourAuthorizationLogic(credentials);
-                return user;  // Return null if authentication fails
-                
-            }
+            async authorize(credentials: Record<"username" | "password", string> | undefined): Promise<any> {
+                if(!credentials || !credentials.username || !credentials.password) return new Error("Invalid credentials");
+                const user = await prisma.user.findFirst({
+                    where: {  username: credentials.username }
+                })
+                if(!user) return null;
+                // const passwordMatch = await bcrypt.compare(credentials.password, user.hashedpassword);
+                if(user?.password !== credentials.password) return null;
+                return user                
+            },
         })
     ],
     secret: process.env.NEXTAUTH_SECRET,
-    debug: process.env.NODE_ENV === "development",
+    session: {
+        strategy: "jwt",
+    },
+    // debug: process.env.NODE_ENV !== "production",
 }
 
-async function yourAuthorizationLogic() {
-    // Assuming you have a User type defined
-    const user = { id: "1", username: "John Doe", email: "test@test.com" };
-    return user;
-  }
 
 const handler = NextAuth(authOptions);
 

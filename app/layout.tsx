@@ -1,6 +1,8 @@
+import Provider from '@/context/provider';
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { redirect } from 'next/navigation';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,9 +16,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+ 
+
   return (
     <html lang="en" className="h-full bg-white">
-      <body className={`${inter.className} bg-slate-300 text-slate-100 container mx-auto p-4 h-full`}>{children}</body>
+      <Provider>
+      <body suppressHydrationWarning={true}
+      className={`${inter.className} bg-slate-300 text-slate-1200 container mx-auto p-4 h-full`}>
+        {children}
+        </body>
+      </Provider>
     </html>
   )
 }
