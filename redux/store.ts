@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import postServiceReducer from './post/postServiceSlice';
+import blogReducer from './feature/blogSlice';
 
 const store = configureStore({
   reducer: {
-    clientService: postServiceReducer,
+    blogService: blogReducer
   },
+  devTools: process.env.NODE_ENV !== "production"
 });
 
 export type RootState = ReturnType<typeof store.getState>;

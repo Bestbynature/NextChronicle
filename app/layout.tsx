@@ -2,7 +2,7 @@ import Provider from '@/context/provider';
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { redirect } from 'next/navigation';
+import { Providers } from '@/redux/provider';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,11 +20,13 @@ export default function RootLayout({
  
 
   return (
-    <html lang="en" className="h-full bg-white">
+    <html lang="en">
       <Provider>
       <body suppressHydrationWarning={true}
       className={`${inter.className} bg-slate-300 text-slate-1200 container mx-auto p-4 h-full`}>
-        {children}
+        <Providers>
+          {children}
+        </Providers>
         </body>
       </Provider>
     </html>

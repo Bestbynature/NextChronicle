@@ -6,7 +6,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 export const authOptions:NextAuthOptions = {
     adapter: PrismaAdapter(prisma),
     pages: {
-        signIn: "/api/auth/login",
+        signIn: "/login",
     },
     providers: [
         CredentialsProvider({
@@ -20,10 +20,10 @@ export const authOptions:NextAuthOptions = {
                 const user = await prisma.user.findFirst({
                     where: {  username: credentials.username }
                 })
-                if(!user) return null;
-                // const passwordMatch = await bcrypt.compare(credentials.password, user.hashedpassword);
-                if(user?.password !== credentials.password) return null;
-                return user                
+                if (!user || user.password !== credentials.password) {
+                    throw new Error("Invalid credentials");
+                  }
+                  return user;
             },
         })
     ],

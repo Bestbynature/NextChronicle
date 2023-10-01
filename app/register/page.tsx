@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import {useState, FormEvent} from 'react';
-import { prisma } from '@/data/db';
 
 export default function Register() {
 
@@ -31,29 +30,14 @@ export default function Register() {
       },
       body: JSON.stringify({data}),
     });
-
-    const userInfo = await response.json();
-
-    // await prisma.user.create({
-    //   data: {
-    //     email,
-    //     password,
-    //     username,
-    //   },
-    // });
-    router.push('/login');
+       router.push('/login');
   }
 
   return (
     <>
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-5 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img
-          className="mx-auto h-10 w-auto"
-          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-          alt="Your Company"
-        />
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        <h2 className="mt-3 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Register a new account
         </h2>
       </div>
@@ -127,7 +111,7 @@ export default function Register() {
             <br />
             <button
                   type="button"
-                  onClick={() => router.push('/')}
+                  onClick={() => router.push('/login')}
                   className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Back to sign in page
