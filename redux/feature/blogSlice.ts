@@ -64,6 +64,7 @@ interface AppState {
   blogs: blogState[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
+  user: string | null;
 
 }
 
@@ -71,12 +72,16 @@ const initialState: AppState = {
   blogs: [],
   status: 'idle',
   error: null,
+  user: null
 };
 
 const blogSlice = createSlice({
   name: 'blogService',
   initialState,
   reducers: {
+    setUser: (state, action: PayloadAction<string>) => {
+      return { ...state, user: action.payload };
+    }
 },
   extraReducers: (builder) => {
     builder
@@ -101,5 +106,5 @@ const blogSlice = createSlice({
    } 
 });
 
-export const {  } = blogSlice.actions;
+export const { setUser } = blogSlice.actions;
 export default blogSlice.reducer;
