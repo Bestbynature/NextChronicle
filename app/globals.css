@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 /* Your CSS file or style block in a component */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 .landing-page {
   text-align: center;
@@ -76,18 +83,84 @@
 
   main{
     background-color: #fcbc3e;
-    height: 100vh;
+    height: 200vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.3em;
+    width: 100%;
   }
 
   .inner {
     width: 90%;
     height: 80%;
-    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+    /* flex-grow: 1; */
+    /* display: grid;
+    grid-template-rows: repeat(4, minmax(auto, fit-content)); */
+    
+  }
+
+  .inner > div {
+    flex: 1;
+  }
+
+  .first {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .second {
+    background-color: #fff;
+    margin-top: 0;
+  }
+
+  .third {
     display: grid;
-    grid-template-rows: repeat(4, minmax(3rem, auto));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* flex-wrap: wrap; */
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0 3em;
+    height: 4em;
+    border: 2px solid red;
+  }
+
+  footer {
+    background-color: #1b1c21;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2em;
+  }
+
+  footer > .footer-content {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  footer > .footer-content > div {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    color: #1a202c;
+    transition: all 0.5s ease-in-out;
+  }
+
+  footer > .footer-content > div:hover {
+    filter: invert(100%);
+    transform: translateY(-10px);
   }
 
 

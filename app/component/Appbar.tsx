@@ -17,6 +17,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useAppSelector } from '@/redux/hooks';
 
+
 // authenticated user information
 // import { prisma } from "@/data/db";
 // import { setUser } from "@/redux/feature/blogSlice";
@@ -188,8 +189,10 @@ export default function NavBar() {
 
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{backgroundColor: "#1b1c21", padding: '1.5em'}}>
+    <Box
+    component={"div"}
+    sx={{ flexGrow: 1, height: "2em" }}>
+      <AppBar position="static" sx={{backgroundColor: "#1b1c21", height: "100%", paddingTop: ".8em"}}>
         <Toolbar>
           {/* <IconButton
             size="large"

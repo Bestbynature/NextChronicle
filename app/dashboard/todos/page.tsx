@@ -21,13 +21,14 @@ export default async function Home() {
   //   },
   // });
 
-  const userData = await getServerSession(authOptions);;
+  const userData = await getServerSession(authOptions);
   const todos = await getTodos();
 
   return (
     <>
     <header>
       <h1>Todos {JSON.stringify(userData)}</h1>
+      <h1>Todos {userData?.user?.email}</h1>
       <Link href="/new">New</Link>
     </header>
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

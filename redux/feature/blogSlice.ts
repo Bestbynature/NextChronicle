@@ -79,8 +79,8 @@ const blogSlice = createSlice({
   name: 'blogService',
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<string>) => {
-      return { ...state, user: action.payload };
+    setUser: (state, action: PayloadAction<string | null | undefined>) => {
+      return { ...state, user: action.payload || null };
     }
 },
   extraReducers: (builder) => {
