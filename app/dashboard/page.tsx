@@ -36,13 +36,13 @@ const Dashboard = () => {
         <div className="second">2</div>
         <div className="third">
           <div>Get Connected with us on social media</div>
-          <div style={{display: "flex", justifyContent: "space-around", width: "60%"}}>
+          <div style={{display: "flex", justifyContent: "space-evenly"}}>
             <FacebookRoundedIcon/>
             <TwitterIcon/>
             <InstagramIcon/>
             <GoogleIcon/>
           </div>
-          <div style={{display: "flex", alignItems: "center"}}>
+          <div style={{display: "flex", alignItems: "center", justifyContent: "flex-end"}}>
           <TextField
             size="small"
             required
@@ -50,7 +50,7 @@ const Dashboard = () => {
             label="Required"
             placeholder="Enter your email address"
           />
-          <Button variant="contained" endIcon={<SendIcon />}>Subscribe </Button>
+          <Button color="primary" variant="contained" endIcon={<SendIcon />}>Subscribe </Button>
           </div>
         </div>
         <Footer/>

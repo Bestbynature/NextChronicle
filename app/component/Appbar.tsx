@@ -190,9 +190,8 @@ export default function NavBar() {
 
   return (
     <Box
-    component={"div"}
-    sx={{ flexGrow: 1, height: "2em" }}>
-      <AppBar position="static" sx={{backgroundColor: "#1b1c21", height: "100%", paddingTop: ".8em"}}>
+    sx={{ flexGrow: 1 }}>
+      <AppBar position="static" sx={{backgroundColor: "#1b1c21"}}>
         <Toolbar>
           {/* <IconButton
             size="large"
